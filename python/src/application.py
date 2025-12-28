@@ -23,7 +23,15 @@ class Application:
 
     # private
 
-    def _validate(self, mode):
+    def __validate__(self, mode):
+        """Validate the provided mode is either 'd' (dry-run) or 'e' (execution).
+
+        Args:
+            mode: The mode to validate.
+
+        Raises:
+            InvalidModeError: If mode is not 'd' or 'e'.
+        """
         match mode:
             case 'd' | 'e':
                 return
@@ -117,6 +125,9 @@ class Application:
 
     def _output(self, message):
         """Output a message if not running in the test environment.
+
+        Args:
+            message: The message to output.
 
         Returns:
             None
