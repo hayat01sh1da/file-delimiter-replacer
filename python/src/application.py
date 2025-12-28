@@ -13,17 +13,17 @@ class Application:
         self.delimiter           = delimiter
         self.mode                = mode
         self.paths               = glob.glob(os.path.join('.', '**', f'*{extension or ''}'), recursive = True)
-        self.exec_mode           = self.__exec_mode__()
+        self.exec_mode           = self._exec_mode()
         self.env                 = inspect.stack()[1].filename.split('/')[-2]
-        self.file_conversion_map = self.__file_conversion_map__()
+        self.file_conversion_map = self._file_conversion_map()
 
     def run(self):
-        self.__validate__(self.mode)
-        self.__replace__()
+        self._validate(self.mode)
+        self._replace()
 
     # private
 
-    def __validate__(self, mode):
+    def _validate(self, mode):
         match mode:
             case 'd' | 'e':
                 return
@@ -31,19 +31,19 @@ class Application:
                 raise InvalidModeError(f'{self.mode} is invalid mode. Provide either `d`(default) or `e`.')
 
     # @return [void]
-    def __replace__(self):
-        self.__output__(f'Target extension is `{self.extension}`')
+    def _replace(self):
+        self._output(f'Target extension is `{self.extension}`')
 
         if not self.paths:
-            self.__output__(f'========== [{self.exec_mode}] No `{self.extension}` files found ==========')
+            self._output(f'========== [{self.exec_mode}] No `{self.extension}` files found ==========')
             return
 
-        self.__output__(f'========== [{self.exec_mode}] Total File Count to Clean: {len(self.paths)} ==========')
-        self.__output__(f'========== [{self.exec_mode}] The delimiters of those files will be replaced with `{self.delimiter}` ==========')
-        self.__output__(f'========== [{self.exec_mode}] Start! ==========')
+        self._output(f'========== [{self.exec_mode}] Total File Count to Clean: {len(self.paths)} ==========')
+        self._output(f'========== [{self.exec_mode}] The delimiters of those files will be replaced with `{self.delimiter}` ==========')
+        self._output(f'========== [{self.exec_mode}] Start! ==========')
 
         for before, after in self.file_conversion_map.items():
-            self.__output__(
+            self._output(
                 f'========== [{self.exec_mode}] Replacing the delimiter: `{before}` => `{after}` =========='
             )
             if self.mode == 'e':
@@ -52,21 +52,21 @@ class Application:
                 if before != after:
                     shutil.move(before, after)
 
-        self.__output__(f'========== [{self.exec_mode}] Done! ==========')
-        self.__output__(f'========== [{self.exec_mode}] Total Target File Count: {len(self.paths)} ==========')
+        self._output(f'========== [{self.exec_mode}] Done! ==========')
+        self._output(f'========== [{self.exec_mode}] Total Target File Count: {len(self.paths)} ==========')
 
     # private
 
     # @return [dict{ str: str}]
-    def __file_conversion_map__(self):
+    def _file_conversion_map(self):
         file_conversion_map = {}
         for path in self.paths:
-            file_conversion_map[path] = self.__after__(path)
+            file_conversion_map[path] = self._after(path)
 
         return file_conversion_map
 
     # @return [str]
-    def __after__(self, path):
+    def _after(self, path):
         elements     = path.split('/')
         old_filename = elements[-1]
 
@@ -88,18 +88,18 @@ class Application:
         return '/'.join(elements)
 
     # @return [str]
-    def __exec_mode__(self):
+    def _exec_mode(self):
         return 'EXECUTION' if self.mode == 'e' else 'DRY RUN'
 
     # @return [bool]
-    def __is_test_env__(self):
+    def _is_test_env(self):
         return self.env == 'test'
 
-    def __output__(self, message):
+    def _output(self, message):
         """Output a message if not running in the test environment.
 
         Returns:
             None
         """
-        if not self.__is_test_env__():
+        if not self._is_test_env():
             print(message)
