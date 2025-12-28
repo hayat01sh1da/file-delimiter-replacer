@@ -30,7 +30,7 @@ class Application:
             case _:
                 raise InvalidModeError(f'{self.mode} is invalid mode. Provide either `d`(default) or `e`.')
 
-    # @return [void]
+    # Returns: None
     def __replace__(self):
         self.__output__(f'Target extension is `{self.extension}`')
 
@@ -57,7 +57,7 @@ class Application:
 
     # private
 
-    # @return [dict{ str: str}]
+    # Returns: dict[str, str]
     def __file_conversion_map__(self):
         file_conversion_map = {}
         for path in self.paths:
@@ -65,7 +65,7 @@ class Application:
 
         return file_conversion_map
 
-    # @return [str]
+    # Returns: str
     def __after__(self, path):
         elements     = path.split('/')
         old_filename = elements[-1]
@@ -87,15 +87,15 @@ class Application:
 
         return '/'.join(elements)
 
-    # @return [str]
+    # Returns: str
     def __exec_mode__(self):
         return 'EXECUTION' if self.mode == 'e' else 'DRY RUN'
 
-    # @return [bool]
+    # Returns: bool
     def __is_test_env__(self):
         return self.env == 'test'
 
-    # @return [void]
+    # Returns: None
     def __output__(self, message):
         if not self.__is_test_env__():
             print(message)
