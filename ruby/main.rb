@@ -1,6 +1,6 @@
 require_relative './lib/application'
 
-puts 'Provide the target extension of files whose delimiter you would like to make chances to:'
+puts 'Provide the target extension of files whose delimiter you would like to make changes to:'
 extension = gets.chomp.strip
 
 puts 'Provide the delimiter you would like to replace the original one with(Default: `_`):'
