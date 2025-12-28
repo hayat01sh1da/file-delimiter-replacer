@@ -26,8 +26,11 @@ class Application
 
     file_conversion_map.each do |before, after|
       output "========== [#{exec_mode}] Replacing the delimiter: #{before} => #{after} =========="
-      FileUtils.mkdir_p(File.dirname(after)) if mode == 'e' && after.match?(/Disc\d{1}\//)
-      FileUtils.mv(before, after) if mode == 'e'
+
+      if mode == 'e'
+        FileUtils.mkdir_p(File.dirname(after)) if after.match?(/Disc\d{1}\//)
+        FileUtils.mv(before, after) if before != after
+      end
     end
 
     output "========== [#{exec_mode}] Done! =========="
