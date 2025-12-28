@@ -41,4 +41,4 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run UnitTest
         working-directory: ./python
-        run: python ./test_application.py
+        run: python ./test/test_application.py
