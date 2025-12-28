@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'fileutils'
-require_relative '../lib/application'
+require_relative '../src/application'
 
 class ApplicationTest < Minitest::Test
   def setup
