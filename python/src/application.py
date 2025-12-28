@@ -129,6 +129,9 @@ class Application:
     def __output__(self, message):
         """Output a message if not running in the test environment.
 
+        Args:
+            message: The message to output.
+
         Returns:
             None
         """
