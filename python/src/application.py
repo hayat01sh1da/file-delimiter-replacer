@@ -116,8 +116,8 @@ class Application:
         return self.env == 'test'
 
     def __output__(self, message):
-        """Output a message unless running in test environment.
-        
+        """Output a message if not running in the test environment.
+
         Returns:
             None
         """
