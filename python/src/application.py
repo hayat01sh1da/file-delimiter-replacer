@@ -95,7 +95,11 @@ class Application:
     def __is_test_env__(self):
         return self.env == 'test'
 
-    # Returns: None
     def __output__(self, message):
+        """Output a message if not running in the test environment.
+
+        Returns:
+            None
+        """
         if not self.__is_test_env__():
             print(message)
