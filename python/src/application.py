@@ -30,8 +30,12 @@ class Application:
             case _:
                 raise InvalidModeError(f'{self.mode} is invalid mode. Provide either `d`(default) or `e`.')
 
-    # Returns: None
     def __replace__(self):
+        """Replace delimiters in file paths.
+        
+        Returns:
+            None
+        """
         self.__output__(f'Target extension is `{self.extension}`')
 
         if not self.paths:
@@ -57,16 +61,24 @@ class Application:
 
     # private
 
-    # Returns: dict[str, str]
     def __file_conversion_map__(self):
+        """Generate a mapping of original paths to new paths with updated delimiters.
+        
+        Returns:
+            dict: A dictionary mapping original file paths to new file paths.
+        """
         file_conversion_map = {}
         for path in self.paths:
             file_conversion_map[path] = self.__after__(path)
 
         return file_conversion_map
 
-    # Returns: str
     def __after__(self, path):
+        """Transform a file path by replacing delimiters according to the pattern.
+        
+        Returns:
+            str: The transformed file path.
+        """
         elements     = path.split('/')
         old_filename = elements[-1]
 
@@ -87,12 +99,20 @@ class Application:
 
         return '/'.join(elements)
 
-    # Returns: str
     def __exec_mode__(self):
+        """Determine the execution mode string for output messages.
+        
+        Returns:
+            str: Either 'EXECUTION' or 'DRY RUN'.
+        """
         return 'EXECUTION' if self.mode == 'e' else 'DRY RUN'
 
-    # Returns: bool
     def __is_test_env__(self):
+        """Check if running in a test environment.
+        
+        Returns:
+            bool: True if in test environment, False otherwise.
+        """
         return self.env == 'test'
 
     def __output__(self, message):
