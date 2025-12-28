@@ -7,7 +7,7 @@
 ```command
 $ cd ./ruby
 $ ruby main.rb 
-Provide the target extension of files whose delimiter you would like to make chances to:
+Provide the target extension of files whose delimiter you would like to make changes to:
 .m4a
 Provide the delimiter you would like to replace the original one with(Default: `_`):
 _

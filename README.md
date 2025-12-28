@@ -18,7 +18,7 @@ This script replace delimiter with something else you prefer, just like space(` 
 The scope is always under the current directory.  
 In you terminal, provide the following 3 parameters via interactive user inputs.
 
-- `extension`: The target extension of files whose delimiter you would like to make chances to
+- `extension`: The target extension of files whose delimiter you would like to make changes to
 - `delimiter`: The delimiter you would like to replace the original one with
 - `mode`: The operation is done as the execution mode with `-e` and the dry_run mode without any option
 
