@@ -18,14 +18,14 @@ class Application
 
   # @return [void]
   def replace
-    output "Target extension is #{extension}"
+    output "Target extension is `#{extension}`"
     output "========== [#{exec_mode}] No #{pattern} Remains ==========" and return if paths.empty?
     output "========== [#{exec_mode}] Total File Count to Clean: #{paths.length} =========="
-    output "========== [#{exec_mode}] The delimiters of those files will be replaced with #{delimiter} =========="
+    output "========== [#{exec_mode}] The delimiters of those files will be replaced with `#{delimiter}` =========="
     output "========== [#{exec_mode}] Start! =========="
 
     file_conversion_map.each do |before, after|
-      output "========== [#{exec_mode}] Replacing the delimiter: #{before} => #{after} =========="
+      output "========== [#{exec_mode}] Replacing the delimiter: `#{before}` => `#{after}` =========="
 
       if mode == 'e'
         FileUtils.mkdir_p(File.dirname(after)) if after.match?(/Disc\d{1}\//)
