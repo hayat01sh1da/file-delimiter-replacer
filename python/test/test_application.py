@@ -10,29 +10,29 @@ from application import Application, InvalidModeError
 
 class TestApplication(unittest.TestCase):
     def setUp(self):
-            self.extension = '.m4a'
-            self.base_dir  = os.path.join('.', 'test', 'Artist')
-            self.pycaches  = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
-            paths          = (
-                os.path.join(self.base_dir, 'Album1', f'1-01 Title{self.extension}'),
-                os.path.join(self.base_dir, 'Album1', f'2-01 Title{self.extension}'),
-                os.path.join(self.base_dir, 'Album2', f'01 Title{self.extension}'),
-                os.path.join(self.base_dir, 'Album2', f'02 Title{self.extension}'),
-                os.path.join(self.base_dir, 'Album3', '01 Title.mp3')
-            )
+        self.extension = '.m4a'
+        self.base_dir  = os.path.join('.', 'test', 'Artist')
+        self.pycaches  = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
+        paths          = (
+            os.path.join(self.base_dir, 'Album1', f'1-01 Title{self.extension}'),
+            os.path.join(self.base_dir, 'Album1', f'2-01 Title{self.extension}'),
+            os.path.join(self.base_dir, 'Album2', f'01 Title{self.extension}'),
+            os.path.join(self.base_dir, 'Album2', f'02 Title{self.extension}'),
+            os.path.join(self.base_dir, 'Album3', '01 Title.mp3')
+        )
 
-            for path in paths:
-                directory = os.path.dirname(path)
-                os.makedirs(directory, exist_ok=True)
-                with open(path, 'w', encoding='utf-8') as file_handle:
-                   file_handle.write('')
+        for path in paths:
+            directory = os.path.dirname(path)
+            os.makedirs(directory, exist_ok=True)
+            with open(path, 'w', encoding='utf-8') as file_handle:
+                file_handle.write('')
 
     def tearDown(self):
-            if os.path.exists(self.base_dir):
-                shutil.rmtree(self.base_dir)
-            for pycache in self.pycaches:
-                if os.path.exists(pycache):
-                    shutil.rmtree(pycache)
+        if os.path.exists(self.base_dir):
+            shutil.rmtree(self.base_dir)
+        for pycache in self.pycaches:
+            if os.path.exists(pycache):
+                shutil.rmtree(pycache)
 
     def test_invalid_mode(self):
         with self.assertRaises(InvalidModeError) as cm:
