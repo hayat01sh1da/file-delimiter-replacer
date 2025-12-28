@@ -91,8 +91,12 @@ class Application:
     def __exec_mode__(self):
         return 'EXECUTION' if self.mode == 'e' else 'DRY RUN'
 
-    # @return [bool]
     def __is_test_env__(self):
+        """Check if the application is running in the test environment.
+
+        Returns:
+            bool: True if running in test environment, False otherwise.
+        """
         return self.env == 'test'
 
     def __output__(self, message):
