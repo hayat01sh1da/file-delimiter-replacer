@@ -24,6 +24,14 @@ class Application:
     # private
 
     def __validate__(self, mode):
+        """Validate the provided mode is either 'd' (dry-run) or 'e' (execution).
+
+        Args:
+            mode: The mode to validate.
+
+        Raises:
+            InvalidModeError: If mode is not 'd' or 'e'.
+        """
         match mode:
             case 'd' | 'e':
                 return
@@ -75,6 +83,9 @@ class Application:
 
     def __after__(self, path):
         """Generate the converted file path with proper delimiter.
+
+        Args:
+            path: The original file path to convert.
 
         Returns:
             str: The converted file path.
