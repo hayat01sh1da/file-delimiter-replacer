@@ -28,6 +28,3 @@ It requires use to input the following 3 parameters to replace the original deli
 - `extension`: The target extension of files whose delimiter you would like to make changes to
 - `delimiter`: The delimiter you would like to replace the original one with
 - `mode`: The operation is done as the execution mode with `e` and the dry_run mode without any option
-
-- [For Ruby Users](./ruby/README.md#2-execution)
-- [For Python Users](./python/README.md#2-execution)
