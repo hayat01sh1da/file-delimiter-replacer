@@ -10,14 +10,13 @@ from application import Application, InvalidModeError
 
 class TestApplication(unittest.TestCase):
     def setUp(self):
-        self.extension = '.m4a'
-        self.base_dir  = os.path.join('.', 'test', 'Artist')
-        self.pycaches  = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
-        paths          = (
-            os.path.join(self.base_dir, 'Album1', f'1-01 Title{self.extension}'),
-            os.path.join(self.base_dir, 'Album1', f'2-01 Title{self.extension}'),
-            os.path.join(self.base_dir, 'Album2', f'01 Title{self.extension}'),
-            os.path.join(self.base_dir, 'Album2', f'02 Title{self.extension}'),
+        self.base_dir = os.path.join('.', 'test', 'Artist')
+        self.pycaches = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
+        paths         = (
+            os.path.join(self.base_dir, 'Album1', '1-01 Title.m4a'),
+            os.path.join(self.base_dir, 'Album1', '2-01 Title.m4a'),
+            os.path.join(self.base_dir, 'Album2', '01 Title.m4a'),
+            os.path.join(self.base_dir, 'Album2', '02 Title.m4a'),
             os.path.join(self.base_dir, 'Album3', '01 Title.mp3')
         )
 
@@ -36,12 +35,11 @@ class TestApplication(unittest.TestCase):
 
     def test_invalid_mode(self):
         with self.assertRaises(InvalidModeError) as cm:
-            Application(extension = self.extension, mode = 'a').run()
+            Application(mode = 'a').run()
         self.assertEqual('a is invalid mode. Provide either `d`(default) or `e`.', str(cm.exception))
 
     def test_dry_run_keeps_original_files(self):
-        Application(extension = self.extension).run()
-
+        Application().run()
         self.assertEqual(
             [
                 './test/Artist/Album1/1-01 Title.m4a',
@@ -54,7 +52,7 @@ class TestApplication(unittest.TestCase):
         )
 
     def test_execution_mode_restructures_files(self):
-        Application(extension = self.extension, mode = 'e').run()
+        Application(mode = 'e').run()
 
         self.assertEqual(
             [
@@ -68,7 +66,7 @@ class TestApplication(unittest.TestCase):
         )
 
     def test_execution_mode_with_custom_delimiter(self):
-        Application(extension = self.extension, delimiter = '-', mode = 'e').run()
+        Application(delimiter = '-', mode = 'e').run()
 
         self.assertEqual(
             [
