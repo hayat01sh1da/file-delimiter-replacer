@@ -1,5 +1,9 @@
 import sys
+import os
+import shutil
+import glob
 sys.path.append('./src')
+from application import Application
 
 from application import Application
 
@@ -13,3 +17,8 @@ for key, value in { 'extension': extension, 'delimiter': delimiter, 'mode': mode
         params[key] = value
 
 Application(**params).run()
+
+pycaches = glob.glob(os.path.join('.', '**', '__pycache__'), recursive = True)
+for pycache in pycaches:
+    if os.path.exists(pycache):
+        shutil.rmtree(pycache)
