@@ -8,7 +8,7 @@ class InvalidModeError(Exception):
     pass
 
 class Application:
-    def __init__(self, extension = None, delimiter = '_', mode = 'd'):
+    def __init__(self, extension = '.m4a', delimiter = '_', mode = 'd'):
         self.extension           = extension
         self.delimiter           = delimiter
         self.mode                = mode

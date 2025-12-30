@@ -3,13 +3,13 @@ require 'fileutils'
 class Application
   class InvalidModeError < StandardError; end
 
-  def self.run(extension: nil, delimiter: '_', mode: 'd')
+  def self.run(extension: '.m4a', delimiter: '_', mode: 'd')
     instance = new(extension:, delimiter:, mode:)
     instance.validate_mode!
     instance.replace
   end
 
-  def initialize(extension: nil, delimiter: '_', mode: 'd')
+  def initialize(extension: '.m4a', delimiter: '_', mode: 'd')
     @paths     = Dir[File.join('.', '**', "*#{extension}")]
     @extension = extension
     @delimiter = delimiter
