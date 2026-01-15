@@ -2,20 +2,28 @@
 
 ## Supported Versions
 
-The table below lists which release lines currently receive security fixes.
-Only the latest patch release in each supported series is eligible for security updates.
+- Only the latest code on `master` receives security updates.
+- Historical versions are provided for reference and are unsupported unless the
+	issue reproduces on the stack below.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## Ecosystem & Compatibility
+
+| Component            | Version(s) / Tooling                | Notes |
+| -------------------- | ---------------------------------- | ----- |
+| OS baseline          | WSL (Ubuntu 24.04.3 LTS)           | Matches the README instructions. |
+| Ruby CLI utilities   | Ruby 4.0.1 (`.ruby-version`)       | Uses standard library (`CSV`, `FileUtils`). Declare extra gems per script if needed. |
+| Python CLI utilities | CPython 3.14.2 (`.python-version`) | Uses Python stdlib (`csv`, `argparse`). Introduce `requirements.txt` if third-party libs are added. |
+
+## Backward Compatibility
+
+- Command-line prompts and delimiter-conversion logic remain stable within Ruby
+	4.0.x / Python 3.14.x. Any breaking change will be announced in the README.
+- Earlier interpreter majors are not tested and will not receive backports.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Report vulnerabilities privately through GitHub’s **Security → Report a
+vulnerability** workflow or email `security@project.org` with the exact CLI
+parameters (`original_extension`, `target_extension`, etc.), sample files, and
+environment details. Expect acknowledgement within **3 business days** and
+status updates at least every **7 business days**.
