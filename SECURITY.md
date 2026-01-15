@@ -3,8 +3,7 @@
 ## Supported Versions
 
 - Only the latest code on `master` receives security updates.
-- Historical versions are provided for reference and are unsupported unless the
-	issue reproduces on the stack below.
+- Historical versions are provided for reference and are unsupported unless the issue reproduces on the stack below.
 
 ## Ecosystem & Compatibility
 
@@ -16,14 +15,10 @@
 
 ## Backward Compatibility
 
-- Command-line prompts and delimiter-conversion logic remain stable within Ruby
-	4.0.x / Python 3.14.x. Any breaking change will be announced in the README.
+- Command-line prompts and delimiter-conversion logic remain stable within Ruby 4.0.x / Python 3.14.x. Any breaking change will be announced in the README.
 - Earlier interpreter majors are not tested and will not receive backports.
 
 ## Reporting a Vulnerability
 
-Report vulnerabilities privately through GitHub’s **Security → Report a
-vulnerability** workflow or email `security@project.org` with the exact CLI
-parameters (`original_extension`, `target_extension`, etc.), sample files, and
-environment details. Expect acknowledgement within **3 business days** and
-status updates at least every **7 business days**.
+Report vulnerabilities privately through GitHub’s **Security → Report a vulnerability** workflow or email `security@project.org` with the exact CLI parameters (`original_extension`, `target_extension`, etc.), sample files, and environment details.  
+Expect acknowledgement within **3 business days** and status updates at least every **7 business days**.
