@@ -9,7 +9,7 @@
 
 | Component            | Version(s) / Tooling                | Notes |
 | -------------------- | ---------------------------------- | ----- |
-| OS baseline          | WSL (Ubuntu 24.04.3 LTS)           | Matches the README instructions. |
+| OS baseline          | WSL (Ubuntu 24.4.3 LTS)            | Matches the README instructions. |
 | Ruby CLI utilities   | Ruby 4.0.1 (`.ruby-version`)       | Uses standard library (`CSV`, `FileUtils`). Declare extra gems per script if needed. |
 | Python CLI utilities | CPython 3.14.2 (`.python-version`) | Uses Python stdlib (`csv`, `argparse`). Introduce `requirements.txt` if third-party libs are added. |
 
