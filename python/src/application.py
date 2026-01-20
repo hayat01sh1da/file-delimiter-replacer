@@ -18,12 +18,12 @@ class Application:
         self.file_conversion_map = self.__file_conversion_map__()
 
     def run(self):
-        self.__validate__(self.mode)
+        self.__validate__()
         self.__replace__()
 
     # private
 
-    def __validate__(self, mode):
+    def __validate__(self):
         """Validate the provided mode is either 'd' (dry-run) or 'e' (execution).
 
         Args:
@@ -32,7 +32,7 @@ class Application:
         Raises:
             InvalidModeError: If mode is not 'd' or 'e'.
         """
-        match mode:
+        match self.mode:
             case 'd' | 'e':
                 return
             case _:
